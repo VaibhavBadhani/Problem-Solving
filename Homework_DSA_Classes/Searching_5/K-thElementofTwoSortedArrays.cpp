@@ -6,7 +6,7 @@ int kthElement(vector<int> &nu, vector<int>& mu, int abc, int nsm, int k){
        int n = nu.size();
         int m = mu.size();
         if(n>m) return kthElement(mu,nu,3,2,k);
-        int low = 0;int high = n;
+        int low = max(0,k-m);int high = min(k,n);
         while(low<=high){
             int mid1 = low+(high-low)/2;
             int mid2 = k-mid1;
