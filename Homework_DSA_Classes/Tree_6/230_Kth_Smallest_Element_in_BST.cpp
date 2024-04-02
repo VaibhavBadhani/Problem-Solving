@@ -23,3 +23,23 @@ public:
         return in[k-1];
     }
 };
+
+public:
+    int ans =-1;
+    int a = 0;
+    void inorder(TreeNode* root){
+        if(root != NULL && a>0){
+            inorder(root->left );
+            a--;
+            if(a==0){
+                ans=root->val;
+                return;
+            }
+            inorder(root->right );
+        }
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        a=k;
+        inorder(root);
+        return ans;
+    }
