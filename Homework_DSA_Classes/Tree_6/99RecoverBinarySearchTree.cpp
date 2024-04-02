@@ -39,3 +39,27 @@ public:
         sortbst(root,in);
     }
 };
+
+class Solution {
+    TreeNode* f=NULL, *l=NULL, *p=NULL;
+public:
+void in(TreeNode* root){
+    if(!root) return;
+    in(root->left);
+    if(p!=NULL&&root->val<p->val){
+        if(f==NULL){
+            f=p;
+            l=root;
+        }
+        else{
+            l=root;
+        }
+    }
+    p=root;
+    in(root->right);
+}
+    void recoverTree(TreeNode* root) {
+        in(root);
+        swap(f->val,l->val);
+    }
+};
