@@ -9,6 +9,8 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
 class Solution {
 public:
   void stoe(TreeNode* root,vector<int> &inor)
@@ -33,5 +35,20 @@ public:
             e--;
         }
         return false;
+    }
+};
+
+ class Solution {
+public:
+    bool solve(TreeNode* root, int k,map<int,int>& mp){
+        if(!root) return false;
+        if(mp.find(k-root->val)!=mp.end()) return true;
+        mp[root->val]++;
+        return solve(root->left,k,mp)||solve(root->right,k,mp);
+    }
+    bool findTarget(TreeNode* root, int k) {
+        if(!root) return false;
+        map<int,int>mp;
+        return solve(root,k,mp);
     }
 };
