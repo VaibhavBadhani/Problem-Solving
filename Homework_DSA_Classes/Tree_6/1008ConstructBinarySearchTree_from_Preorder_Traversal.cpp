@@ -41,3 +41,18 @@ public:
         return solve(preorder,inorder,preindex,0,size-1,size,mapi);
     }
 };
+
+
+TreeNode* trr(int& i,vector<int>& p,int b){
+        if(i==p.size()||b<p[i]) return NULL;
+        TreeNode* node = new TreeNode(p[i]);
+        i++;
+        node->left = trr(i,p,node->val);
+        node->right = trr(i,p,b);
+        return node;
+    }
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i = 0;
+        return trr(i,preorder,INT_MAX);
+    }
+};
